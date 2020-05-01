@@ -33,7 +33,7 @@ df = sqlContext.read.csv('gbooks', schema=schema, sep='\t')
 #df.word.like("ATTRIBUTE").show(10)
 
 df.createOrReplaceTempView("tableTemp")
-sqlContext.sql("SELECT * from tableTemp where cont1 > 10 ").show(10)
+sqlContext.sql("SELECT * from tableTemp where count1 > 10 ").show(10)
 # Spark SQL
 
 # +--------+                                                                      
