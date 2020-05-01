@@ -20,7 +20,7 @@ schema = StructType([StructField("word", StringType(), True),
 	StructField("count3", IntegerType(), True)])
 
 
-df = sqlContext.read.csv('gbooks', schema=schema)
+df = sqlContext.read.csv('gbooks', schema=schema, sep='\t')
 
 df.show(10)
 
