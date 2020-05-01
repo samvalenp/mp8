@@ -22,6 +22,7 @@ schema = StructType([StructField("word", StringType(), True),
 
 
 df = sqlContext.createDataFrame(rdd, schema)
+df.show(10)
 
 # Spark SQL - DataFrame API
 
