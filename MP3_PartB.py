@@ -30,9 +30,9 @@ df = sqlContext.createDataFrame(rdd, schema)
 ####
 
 # Spark SQL 
-
-df.createOrReplaceTempView("tempTable")
-sqlContext.sql("SELECT COUNT(*) from tempTable").show()
+df.count()
+#df.createOrReplaceTempView("tempTable")
+#sqlContext.sql("SELECT COUNT(*) from tempTable").show()
 # +--------+                                                                              
 # |count(1)|
 # +--------+
