@@ -13,7 +13,6 @@ sqlContext = SQLContext(sc)
 # RDD API
 # Columns:
 # 0: place (string), 1: count1 (int), 2: count2 (int), 3: count3 (int)
-rdd = sc.textFile("gbooks") 
 
 schema = StructType([StructField("word", StringType(), True), 
 	StructField("count1", IntegerType(), True),
@@ -21,7 +20,8 @@ schema = StructType([StructField("word", StringType(), True),
 	StructField("count3", IntegerType(), True)])
 
 
-df = sqlContext.createDataFrame(rdd, schema)
+df = spark.read.csv('gbooks', schema=schema)
+
 df.show(10)
 
 # Spark SQL - DataFrame API
