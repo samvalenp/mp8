@@ -13,7 +13,15 @@ sqlContext = SQLContext(sc)
 # RDD API
 # Columns:
 # 0: place (string), 1: count1 (int), 2: count2 (int), 3: count3 (int)
+rdd = sc.textFile("gbooks") 
 
+schema = StructType([StructField("word", StringType(), True), 
+	StructField("count1", IntegerType(), True),
+	StructField("count2", IntegerType(), True),
+	StructField("count3", IntegerType(), True)])
+
+
+df = sqlContext.createDataFrame(rdd, schema)
 
 # Spark SQL - DataFrame API
 
@@ -23,7 +31,8 @@ sqlContext = SQLContext(sc)
 
 # Spark SQL 
 
-
+df.createOrReplaceTempView("tempTable")
+spark.sql("SELECT COUNT(*) from tempTable").show()
 # +--------+                                                                              
 # |count(1)|
 # +--------+
