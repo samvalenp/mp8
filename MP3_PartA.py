@@ -10,10 +10,14 @@ sqlContext = SQLContext(sc)
 # 1. Setup (10 points): Download the gbook file and write a function to load it in an RDD & DataFrame
 ####
 
+
+
 # RDD API
 # Columns:
 # 0: place (string), 1: count1 (int), 2: count2 (int), 3: count3 (int)
-
+rdd = sc.textFile("gbooks") 
+df = spark.createDataFrame(rdd, ['word', 'count1', 'count2', 'count3'])
+df.printSchema()
 
 # Spark SQL - DataFrame API
 
