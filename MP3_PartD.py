@@ -31,7 +31,7 @@ schema = StructType([StructField("word", StringType(), True),
 df = sqlContext.read.csv('gbooks', schema=schema, sep='\t')
 
 df.createOrReplaceTempView("tableTemp")
-sqlContext.sql("SELECT word, count(*) from tableTemp order by count(*) desc").show(3)
+sqlContext.sql("SELECT word, count(*) from tableTemp group by word order by count(*) desc").show(3)
 
 
 
