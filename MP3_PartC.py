@@ -20,6 +20,19 @@ sqlContext = SQLContext(sc)
 # 3. Filtering (10 points) Count the number of appearances of word 'ATTRIBUTE'
 ####
 
+schema = StructType([StructField("word", StringType(), True), 
+	StructField("count1", IntegerType(), True),
+	StructField("count2", IntegerType(), True),
+	StructField("count3", IntegerType(), True)])
+
+
+df = sqlContext.read.csv('gbooks', schema=schema, sep='\t')
+
+
+df.select("word", df.word.like("ATTRIBUTE")).show(10)
+#df.createOrReplaceTempView("tableTemp")
+
+#sqlContext.sql("SELECT * from tableTemp where word = ' ' ")
 # Spark SQL
 
 # +--------+                                                                      
