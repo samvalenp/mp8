@@ -33,7 +33,7 @@ df = sqlContext.read.csv('gbooks', schema=schema, sep='\t')
 #df.word.like("ATTRIBUTE").show(10)
 
 df.createOrReplaceTempView("tableTemp")
-print(sqlContext.sql("SELECT * from tableTemp where word ='ATTRIBUTE'").count())
+sqlContext.sql("SELECT count(*) from tableTemp where word ='ATTRIBUTE'").show()
 # Spark SQL
 
 # +--------+                                                                      

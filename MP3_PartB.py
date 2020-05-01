@@ -22,7 +22,8 @@ schema = StructType([StructField("word", StringType(), True),
 
 df = sqlContext.read.csv('gbooks', schema=schema, sep='\t')
 
-print (df.count())
+df.createOrReplaceTempView("tableTemp")
+sqlContext.sql("SELECT count(*) from tableTemp").show()
 
 # Spark SQL - DataFrame API
 

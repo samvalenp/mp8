@@ -33,7 +33,7 @@ df = sqlContext.read.csv('gbooks', schema=schema, sep='\t')
 df2 = df.select("word", "count1").distinct().limit(1000);
 df2.createOrReplaceTempView('gbooks2')
 
-print(sqlContext.sql("SELECT A.count1 from gbooks2 A, gbooks2 B where A.word <> B.word and A.count1 = B.count1").count())
+print(sqlContext.sql("SELECT A.count1 from gbooks2 A, gbooks2 B where A.count1 = B.count1").count())
 
 # Now we are going to perform a JOIN operation on 'df2'. Do a self-join on 'df2' in lines with the same #'count1' values and see how many lines this JOIN could produce. Answer this question via DataFrame API and #Spark SQL API
 # Spark SQL API
