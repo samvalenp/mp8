@@ -22,7 +22,7 @@ schema = StructType([StructField("word", StringType(), True),
 
 df = sqlContext.read.csv('gbooks', schema=schema, sep='\t')
 
-df.show(10)
+df.count()
 
 # Spark SQL - DataFrame API
 
