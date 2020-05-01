@@ -30,10 +30,16 @@ schema = StructType([StructField("word", StringType(), True),
 
 df = sqlContext.read.csv('gbooks', schema=schema, sep='\t')
 
-tempfd = df.select("word")
-rdd = tempfd.rdd.flatMap(lambda x:x)
+df.createOrReplaceTempView("tableTemp")
+sqlContext.sql("SELECT word, count(*) from tableTemp order by count(*) desc").show(3)
 
-print(rdd.take(10))
+
+
+#tempfd = df.select("word")
+#rdd = tempfd.rdd.flatMap(lambda x:x)
+
+#wordCounts = rdd.map(lambda word: (word, 1)).reduceByKey(lambda a,b: a+b)
+
 
 # Spark SQL
 
