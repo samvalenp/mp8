@@ -16,7 +16,7 @@ sqlContext = SQLContext(sc)
 # Columns:
 # 0: place (string), 1: count1 (int), 2: count2 (int), 3: count3 (int)
 rdd = sc.textFile("gbooks") 
-df = spark.createDataFrame(rdd, ['word', 'count1', 'count2', 'count3'])
+df = sc.createDataFrame(rdd, ['word', 'count1', 'count2', 'count3'])
 df.printSchema()
 
 # Spark SQL - DataFrame API
