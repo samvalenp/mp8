@@ -22,6 +22,19 @@ sqlContext = SQLContext(sc)
 # 4. MapReduce (10 points): List the three most frequent 'word' with their count of appearances
 ####
 
+schema = StructType([StructField("word", StringType(), True), 
+	StructField("count1", IntegerType(), True),
+	StructField("count2", IntegerType(), True),
+	StructField("count3", IntegerType(), True)])
+
+
+df = sqlContext.read.csv('gbooks', schema=schema, sep='\t')
+
+tempfd = df.select("word")
+rdd = tempfd.rdd.flatMap(lambda x:x)
+
+print(rdd.take(10))
+
 # Spark SQL
 
 # There are 18 items with count = 425, so could be different 
